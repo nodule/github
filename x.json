@@ -60,7 +60,7 @@
       "description": "Get Repository",
       "ns": "github",
       "name": "getRepo",
-      "fn": "output = [input.github, 'getRepo', input.username, input.reponame]\n"
+      "fn": "output = {\n repo: input.github.getRepo(input.username, input.reponame)\n}\n"
     },
     {
       "ports": {

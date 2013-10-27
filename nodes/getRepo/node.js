@@ -1,1 +1,3 @@
-output = [input.github, 'getRepo', input.username, input.reponame]
+output = {
+ repo: input.github.getRepo(input.username, input.reponame)
+}
