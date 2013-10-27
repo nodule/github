@@ -1,0 +1,29 @@
+{
+  "name": "getTree",
+  "ns": "github",
+  "description": "Retrieve repo tree",
+  "ports": {
+    "input": {
+      "repo": {
+        "title": "Repository",
+        "type": "function",
+        "readonly": true
+      },
+      "branch": {
+        "title": "Branch",
+        "type": "string",
+        "default": "master"
+      }
+    },
+    "output": {
+      "err": {
+        "title": "Error",
+        "type": "object"
+      },
+      "tree": {
+        "title": "Tree",
+        "type": "object"
+      }
+    }
+  }
+}

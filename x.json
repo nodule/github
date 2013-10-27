@@ -1,0 +1,219 @@
+{
+  "name": "github",
+  "description": "Github for Chiχ",
+  "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodule/github.git"
+  },
+  "dependencies": {
+    "github-api": "0.x.x"
+  },
+  "nodes": [
+    {
+      "ports": {
+        "input": {
+          "oauth_token": {
+            "title": "OAUTH Token",
+            "type": "string"
+          }
+        },
+        "output": {
+          "github": {
+            "title": "Github",
+            "type": "function"
+          }
+        }
+      },
+      "require": {
+        "github-api": "0.x.x"
+      },
+      "description": "Github API",
+      "ns": "github",
+      "name": "api",
+      "fn": "output = {\n  github: new github_api( {\n    token: input.oauth_token\n  })\n}\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "github": {
+            "title": "Github",
+            "type": "function",
+            "readonly": true
+          },
+          "username": {
+            "title": "Username",
+            "type": "string"
+          },
+          "reponame": {
+            "title": "Repository name",
+            "type": "string"
+          }
+        },
+        "output": {
+          "repo": {
+            "title": "Repository",
+            "type": "function"
+          }
+        }
+      },
+      "description": "Get Repository",
+      "ns": "github",
+      "name": "getRepo",
+      "fn": "output = [input.github, 'getRepo', input.username, input.reponame]\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "repo": {
+            "title": "Repository",
+            "type": "function",
+            "readonly": true
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          }
+        },
+        "output": {
+          "err": {
+            "title": "Error",
+            "type": "object"
+          },
+          "sha": {
+            "title": "Sha",
+            "type": "string"
+          }
+        }
+      },
+      "description": "Retrieve Sha for file",
+      "ns": "github",
+      "name": "getSha",
+      "fn": "output = [\n  input.repo,\n  'getSha',\n  input.path\n]\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "repo": {
+            "title": "Repository",
+            "type": "function",
+            "readonly": true
+          },
+          "branch": {
+            "title": "Branch",
+            "type": "string",
+            "default": "master"
+          }
+        },
+        "output": {
+          "err": {
+            "title": "Error",
+            "type": "object"
+          },
+          "tree": {
+            "title": "Tree",
+            "type": "object"
+          }
+        }
+      },
+      "description": "Retrieve repo tree",
+      "ns": "github",
+      "name": "getTree",
+      "fn": "output = [\n  input.repo,\n  'getTree',\n  input.branch\n]\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "repo": {
+            "title": "Repository",
+            "type": "function",
+            "readonly": true
+          },
+          "branch": {
+            "title": "Branch",
+            "type": "string",
+            "default": "master"
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          }
+        },
+        "output": {
+          "err": {
+            "title": "Error",
+            "type": "object"
+          }
+        }
+      },
+      "description": "Read File",
+      "ns": "github",
+      "name": "read",
+      "fn": "output = [\n  input.repo,\n  'read',\n  input.branch,\n  input.path\n]\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "repo": {
+            "title": "Repository",
+            "type": "function",
+            "readonly": true
+          }
+        },
+        "output": {
+          "err": {
+            "title": "Error",
+            "type": "object"
+          },
+          "repo": {
+            "title": "Repository",
+            "type": "object"
+          }
+        }
+      },
+      "description": "Show Repository",
+      "ns": "github",
+      "name": "show",
+      "fn": "output = [input.repo, 'show']\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "repo": {
+            "title": "Repository",
+            "type": "function",
+            "readonly": true
+          },
+          "branch": {
+            "title": "Branch",
+            "type": "string",
+            "default": "master"
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          },
+          "contents": {
+            "title": "Contents",
+            "type": "string"
+          },
+          "commit_message": {
+            "title": "Commit message",
+            "type": "string"
+          }
+        },
+        "output": {
+          "err": {
+            "title": "Error",
+            "type": "object"
+          }
+        }
+      },
+      "description": "Write File",
+      "ns": "github",
+      "name": "write",
+      "fn": "output = [\n  input.repo,\n  'write',\n  input.branch,\n  input.path,\n  input.contents,\n  input.commit_message\n]\n"
+    }
+  ],
+  "twigs": []
+}

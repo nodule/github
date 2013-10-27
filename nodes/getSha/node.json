@@ -1,0 +1,28 @@
+{
+  "name": "getSha",
+  "ns": "github",
+  "description": "Retrieve Sha for file",
+  "ports": {
+    "input": {
+      "repo": {
+        "title": "Repository",
+        "type": "function",
+        "readonly": true
+      },
+      "path": {
+        "title": "Path",
+        "type": "string"
+      }
+    },
+    "output": {
+      "err": {
+        "title": "Error",
+        "type": "object"
+      },
+      "sha": {
+        "title": "Sha",
+        "type": "string"
+      }
+    }
+  }
+}

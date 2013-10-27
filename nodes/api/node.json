@@ -1,0 +1,22 @@
+{
+  "name": "api",
+  "ns": "github",
+  "description": "Github API",
+  "require": {
+    "github-api": "0.x.x"
+  },
+  "ports": {
+    "input": {
+      "oauth_token": {
+        "title": "OAUTH Token",
+        "type": "string"
+      }
+    },
+    "output": {
+      "github": {
+        "title": "Github",
+        "type": "function"
+      }
+    }
+  }
+}

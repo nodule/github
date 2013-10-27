@@ -1,0 +1,28 @@
+{
+  "name": "getRepo",
+  "ns": "github",
+  "description": "Get Repository",
+  "ports": {
+    "input": {
+      "github": {
+        "title": "Github",
+        "type": "function",
+        "readonly": true
+      },
+      "username": {
+        "title": "Username",
+        "type": "string"
+      },
+      "reponame": {
+        "title": "Repository name",
+        "type": "string"
+      }
+    },
+    "output": {
+      "repo": {
+        "title": "Repository",
+        "type": "function"
+      }
+    }
+  }
+}

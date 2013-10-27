@@ -1,0 +1,24 @@
+{
+  "name": "show",
+  "ns": "github",
+  "description": "Show Repository",
+  "ports": {
+    "input": {
+      "repo": {
+        "title": "Repository",
+        "type": "function",
+        "readonly": true
+      }
+    },
+    "output": {
+      "err": {
+        "title": "Error",
+        "type": "object"
+      },
+      "repo": {
+        "title": "Repository",
+        "type": "object"
+      }
+    }
+  }
+}

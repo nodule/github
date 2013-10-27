@@ -1,0 +1,37 @@
+{
+  "name": "write",
+  "ns": "github",
+  "description": "Write File",
+  "ports": {
+    "input": {
+      "repo": {
+        "title": "Repository",
+        "type": "function",
+        "readonly": true
+      },
+      "branch": {
+        "title": "Branch",
+        "type": "string",
+        "default": "master"
+      },
+      "path": {
+        "title": "Path",
+        "type": "string"
+      },
+      "contents": {
+        "title": "Contents",
+        "type": "string"
+      },
+      "commit_message": {
+        "title": "Commit message",
+        "type": "string"
+      }
+    },
+    "output": {
+      "err": {
+        "title": "Error",
+        "type": "object"
+      }
+    }
+  }
+}
