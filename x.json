@@ -143,6 +143,10 @@
           "err": {
             "title": "Error",
             "type": "object"
+          },
+          "data": {
+            "title": "Data",
+            "type": "object"
           }
         }
       },
