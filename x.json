@@ -144,8 +144,12 @@
             "title": "Error",
             "type": "object"
           },
-          "data": {
-            "title": "Data",
+          "content": {
+            "title": "Content",
+            "type": "object"
+          },
+          "sha": {
+            "title": "SHA",
             "type": "object"
           }
         }
