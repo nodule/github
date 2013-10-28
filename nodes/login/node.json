@@ -1,0 +1,26 @@
+{
+  "name": "login",
+  "ns": "github",
+  "description": "Github Login",
+  "require": {
+    "github-api": "0.x.x"
+  },
+  "ports": {
+    "input": {
+      "username": {
+        "title": "Username",
+        "type": "string"
+      },
+      "password": {
+        "title": "Password",
+        "type": "password"
+      }
+    },
+    "output": {
+      "github": {
+        "title": "Github",
+        "type": "function"
+      }
+    }
+  }
+}

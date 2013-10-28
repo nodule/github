@@ -124,6 +124,33 @@
     {
       "ports": {
         "input": {
+          "username": {
+            "title": "Username",
+            "type": "string"
+          },
+          "password": {
+            "title": "Password",
+            "type": "password"
+          }
+        },
+        "output": {
+          "github": {
+            "title": "Github",
+            "type": "function"
+          }
+        }
+      },
+      "require": {
+        "github-api": "0.x.x"
+      },
+      "description": "Github Login",
+      "ns": "github",
+      "name": "login",
+      "fn": "output = {\n  github: new github_api( {\n    username: input.username,\n    password: input.password\n  })\n}\n"
+    },
+    {
+      "ports": {
+        "input": {
           "repo": {
             "title": "Repository",
             "type": "function",
