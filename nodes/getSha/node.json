@@ -2,6 +2,9 @@
   "name": "getSha",
   "ns": "github",
   "description": "Retrieve Sha for file",
+  "phrases": {
+    "active": "retrieving Sha for path {{input.path}}"
+  },
   "ports": {
     "input": {
       "repo": {

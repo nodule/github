@@ -2,6 +2,9 @@
   "name": "write",
   "ns": "github",
   "description": "Write File",
+  "phrases": {
+    "active": "Writing {{input.path}} to the {{input.branch}} branch. [{{input.commit_message}}]"
+  },
   "ports": {
     "input": {
       "repo": {

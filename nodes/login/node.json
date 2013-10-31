@@ -2,6 +2,9 @@
   "name": "login",
   "ns": "github",
   "description": "Github Login",
+  "phrases": {
+    "active": "Logging into Github"
+  },
   "require": {
     "github-api": "0.x.x"
   },

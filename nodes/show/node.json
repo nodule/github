@@ -2,6 +2,9 @@
   "name": "show",
   "ns": "github",
   "description": "Show Repository",
+  "phrases": {
+    "active": "Reading {{input.path}} from the {{input.branch}} branch"
+  },
   "ports": {
     "input": {
       "repo": {

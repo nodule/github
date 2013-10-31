@@ -28,6 +28,9 @@
       "require": {
         "github-api": "0.x.x"
       },
+      "phrases": {
+        "active": "Authenticating with github api"
+      },
       "description": "Github API",
       "ns": "github",
       "name": "api",
@@ -57,6 +60,9 @@
           }
         }
       },
+      "phrases": {
+        "active": "getting repository {{input.reponame}}"
+      },
       "description": "Get Repository",
       "ns": "github",
       "name": "getRepo",
@@ -85,6 +91,9 @@
             "type": "string"
           }
         }
+      },
+      "phrases": {
+        "active": "retrieving Sha for path {{input.path}}"
       },
       "description": "Retrieve Sha for file",
       "ns": "github",
@@ -116,6 +125,9 @@
           }
         }
       },
+      "phrases": {
+        "active": "retrieving {{input.branch}} tree"
+      },
       "description": "Retrieve repo tree",
       "ns": "github",
       "name": "getTree",
@@ -142,6 +154,9 @@
       },
       "require": {
         "github-api": "0.x.x"
+      },
+      "phrases": {
+        "active": "Logging into Github"
       },
       "description": "Github Login",
       "ns": "github",
@@ -181,6 +196,9 @@
           }
         }
       },
+      "phrases": {
+        "active": "Reading {{input.path}} from the {{input.branch}} branch"
+      },
       "description": "Read File",
       "ns": "github",
       "name": "read",
@@ -205,6 +223,9 @@
             "type": "object"
           }
         }
+      },
+      "phrases": {
+        "active": "Reading {{input.path}} from the {{input.branch}} branch"
       },
       "description": "Show Repository",
       "ns": "github",
@@ -243,6 +264,9 @@
             "type": "object"
           }
         }
+      },
+      "phrases": {
+        "active": "Writing {{input.path}} to the {{input.branch}} branch. [{{input.commit_message}}]"
       },
       "description": "Write File",
       "ns": "github",

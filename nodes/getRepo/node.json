@@ -2,6 +2,9 @@
   "name": "getRepo",
   "ns": "github",
   "description": "Get Repository",
+  "phrases": {
+    "active": "getting repository {{input.reponame}}"
+  },
   "ports": {
     "input": {
       "github": {

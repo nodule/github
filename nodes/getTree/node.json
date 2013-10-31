@@ -2,6 +2,9 @@
   "name": "getTree",
   "ns": "github",
   "description": "Retrieve repo tree",
+  "phrases": {
+    "active": "retrieving {{input.branch}} tree"
+  },
   "ports": {
     "input": {
       "repo": {
