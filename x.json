@@ -472,6 +472,11 @@
               "commit_message": {
                 "expose": true
               }
+            },
+            "output": {
+              "write": {
+                "expose": true
+              }
             }
           }
         },
