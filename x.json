@@ -442,6 +442,14 @@
               "branch": {
                 "expose": true
               }
+            },
+            "output": {
+              "err": {
+                "expose": true
+              },
+              "tree": {
+                "expose": true
+              }
             }
           }
         },
