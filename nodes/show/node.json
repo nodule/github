@@ -14,7 +14,7 @@
       }
     },
     "output": {
-      "err": {
+      "error": {
         "title": "Error",
         "type": "object"
       },
