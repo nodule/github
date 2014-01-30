@@ -11,15 +11,6 @@
   },
   "nodes": [
     {
-      "name": "api",
-      "ns": "github",
-      "description": "Github API",
-      "phrases": {
-        "active": "Authenticating with github api"
-      },
-      "require": {
-        "github-api": "0.x.x"
-      },
       "ports": {
         "input": {
           "oauth_token": {
@@ -34,15 +25,18 @@
           }
         }
       },
-      "fn": "output = {\n  github: new github_api( {\n    token: input.oauth_token\n  })\n}\n"
+      "require": {
+        "github-api": "0.x.x"
+      },
+      "phrases": {
+        "active": "Authenticating with github api"
+      },
+      "description": "Github API",
+      "ns": "github",
+      "name": "api",
+      "fn": "output = {\n  github: new github_api({\n    token: input.oauth_token\n  })\n}\n"
     },
     {
-      "name": "getRepo",
-      "ns": "github",
-      "description": "Get Repository",
-      "phrases": {
-        "active": "getting repository {{input.reponame}}"
-      },
       "ports": {
         "input": {
           "github": {
@@ -66,15 +60,15 @@
           }
         }
       },
-      "fn": "output = {\n repo: input.github.getRepo(input.username, input.reponame)\n}\n"
+      "phrases": {
+        "active": "getting repository {{input.reponame}}"
+      },
+      "description": "Get Repository",
+      "ns": "github",
+      "name": "getRepo",
+      "fn": "output = {\n  repo: input.github.getRepo(input.username, input.reponame)\n}\n"
     },
     {
-      "name": "getSha",
-      "ns": "github",
-      "description": "Retrieve Sha for file",
-      "phrases": {
-        "active": "retrieving Sha for path {{input.path}}"
-      },
       "ports": {
         "input": {
           "repo": {
@@ -98,15 +92,15 @@
           }
         }
       },
+      "phrases": {
+        "active": "retrieving Sha for path {{input.path}}"
+      },
+      "description": "Retrieve Sha for file",
+      "ns": "github",
+      "name": "getSha",
       "fn": "output = [\n  input.repo,\n  'getSha',\n  input.path\n]\n"
     },
     {
-      "name": "getTree",
-      "ns": "github",
-      "description": "Retrieve repo tree",
-      "phrases": {
-        "active": "retrieving {{input.branch}} tree"
-      },
       "ports": {
         "input": {
           "repo": {
@@ -131,18 +125,15 @@
           }
         }
       },
+      "phrases": {
+        "active": "retrieving {{input.branch}} tree"
+      },
+      "description": "Retrieve repo tree",
+      "ns": "github",
+      "name": "getTree",
       "fn": "output = [\n  input.repo,\n  'getTree',\n  input.branch\n]\n"
     },
     {
-      "name": "login",
-      "ns": "github",
-      "description": "Github Login",
-      "phrases": {
-        "active": "Logging into Github"
-      },
-      "require": {
-        "github-api": "0.x.x"
-      },
       "ports": {
         "input": {
           "username": {
@@ -161,15 +152,18 @@
           }
         }
       },
-      "fn": "output = {\n  github: new github_api( {\n    username: input.username,\n    password: input.password\n  })\n}\n"
+      "require": {
+        "github-api": "0.x.x"
+      },
+      "phrases": {
+        "active": "Logging into Github"
+      },
+      "description": "Github Login",
+      "ns": "github",
+      "name": "login",
+      "fn": "output = {\n  github: new github_api({\n    username: input.username,\n    password: input.password\n  })\n}\n"
     },
     {
-      "name": "read",
-      "ns": "github",
-      "description": "Read File",
-      "phrases": {
-        "active": "Reading {{input.path}} from the {{input.branch}} branch"
-      },
       "ports": {
         "input": {
           "repo": {
@@ -202,15 +196,15 @@
           }
         }
       },
-      "fn": "output = [\n  input.repo,\n  'read',\n  input.branch,\n  input.path\n]\n"
-    },
-    {
-      "name": "show",
-      "ns": "github",
-      "description": "Show Repository",
       "phrases": {
         "active": "Reading {{input.path}} from the {{input.branch}} branch"
       },
+      "description": "Read File",
+      "ns": "github",
+      "name": "read",
+      "fn": "output = [\n  input.repo,\n  'read',\n  input.branch,\n  input.path\n]\n"
+    },
+    {
       "ports": {
         "input": {
           "repo": {
@@ -230,15 +224,15 @@
           }
         }
       },
+      "phrases": {
+        "active": "Reading {{input.path}} from the {{input.branch}} branch"
+      },
+      "description": "Show Repository",
+      "ns": "github",
+      "name": "show",
       "fn": "output = [input.repo, 'show']\n"
     },
     {
-      "name": "write",
-      "ns": "github",
-      "description": "Write File",
-      "phrases": {
-        "active": "Writing {{input.path}} to the {{input.branch}} branch. [{{input.commit_message}}]"
-      },
       "ports": {
         "input": {
           "repo": {
@@ -271,6 +265,12 @@
           }
         }
       },
+      "phrases": {
+        "active": "Writing {{input.path}} to the {{input.branch}} branch. [{{input.commit_message}}]"
+      },
+      "description": "Write File",
+      "ns": "github",
+      "name": "write",
       "fn": "output = [\n  input.repo,\n  'write',\n  input.branch,\n  input.path,\n  input.contents,\n  input.commit_message\n]\n"
     }
   ],
