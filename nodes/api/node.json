@@ -18,7 +18,7 @@
     "output": {
       "github": {
         "title": "Github",
-        "type": "function"
+        "type": "object"
       }
     }
   }

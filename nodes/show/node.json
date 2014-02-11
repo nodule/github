@@ -9,7 +9,7 @@
     "input": {
       "repo": {
         "title": "Repository",
-        "type": "function",
+        "type": "object",
         "readonly": true
       }
     },
