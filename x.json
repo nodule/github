@@ -21,7 +21,7 @@
         "output": {
           "github": {
             "title": "Github",
-            "type": "function"
+            "type": "object"
           }
         }
       },
@@ -39,10 +39,40 @@
     {
       "ports": {
         "input": {
+          "repo": {
+            "title": "Repository",
+            "type": "function"
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          }
+        },
+        "output": {
+          "error": {
+            "title": "Error",
+            "type": "object"
+          },
+          "contents": {
+            "title": "Contents",
+            "type": "string"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Reading contents of{{input.path}}"
+      },
+      "description": "Get contents at a particular path",
+      "ns": "github",
+      "name": "contents",
+      "fn": "output = [input.repo, 'contents', input.path]\n"
+    },
+    {
+      "ports": {
+        "input": {
           "github": {
             "title": "Github",
-            "type": "function",
-            "readonly": true
+            "type": "function"
           },
           "username": {
             "title": "Username",
@@ -105,8 +135,7 @@
         "input": {
           "repo": {
             "title": "Repository",
-            "type": "function",
-            "readonly": true
+            "type": "function"
           },
           "branch": {
             "title": "Branch",
@@ -168,8 +197,7 @@
         "input": {
           "repo": {
             "title": "Repository",
-            "type": "function",
-            "readonly": true
+            "type": "function"
           },
           "branch": {
             "title": "Branch",
@@ -209,8 +237,7 @@
         "input": {
           "repo": {
             "title": "Repository",
-            "type": "function",
-            "readonly": true
+            "type": "function"
           }
         },
         "output": {
@@ -220,7 +247,7 @@
           },
           "repo": {
             "title": "Repository",
-            "type": "object"
+            "type": "function"
           }
         }
       },
@@ -237,8 +264,7 @@
         "input": {
           "repo": {
             "title": "Repository",
-            "type": "function",
-            "readonly": true
+            "type": "function"
           },
           "branch": {
             "title": "Branch",
@@ -274,278 +300,5 @@
       "fn": "output = [\n  input.repo,\n  'write',\n  input.branch,\n  input.path,\n  input.contents,\n  input.commit_message\n]\n"
     }
   ],
-  "twigs": [
-    {
-      "title": "Github",
-      "description": "",
-      "keywords": [],
-      "_id": "526dd5c6cad1214984832004",
-      "actions": {
-        "apiGetRepoGetTreePath": {
-          "nodes": [
-            "526dd5c6b4c4aa8770000001",
-            "526dd5c6b4c4aa8770000003",
-            "527c0c62ee56220000694534"
-          ],
-          "title": "apiGetRepoGetTreePath",
-          "description": ""
-        },
-        "apiGetRepoWrite": {
-          "nodes": [
-            "526dd5c6b4c4aa8770000001",
-            "526dd5c6b4c4aa8770000003",
-            "529f2c3d6a4bce00002d28d2"
-          ],
-          "title": "apiGetRepoWrite",
-          "description": ""
-        },
-        "apiGetRepoRead": {
-          "nodes": [
-            "526dd5c6b4c4aa8770000001",
-            "526dd5c6b4c4aa8770000003",
-            "529f2ccd6a4bce00002d28db"
-          ],
-          "title": "apiGetRepoRead",
-          "description": ""
-        },
-        "apiGetRepoShow": {
-          "nodes": [
-            "526dd5c6b4c4aa8770000001",
-            "526dd5c6b4c4aa8770000003",
-            "52a292616ab1e400004a592f"
-          ],
-          "title": "apiGetRepoShow",
-          "description": ""
-        },
-        "apiGetRepoGetSha": {
-          "nodes": [
-            "526dd5c6b4c4aa8770000001",
-            "526dd5c6b4c4aa8770000003",
-            "52a9d94bcf434600004155c1"
-          ],
-          "title": "apiGetRepoGetSha",
-          "description": ""
-        }
-      },
-      "links": [
-        {
-          "id": "527c0c98b553560000f0c2c9",
-          "source": "526dd5c6b4c4aa8770000003",
-          "target": "527c0c62ee56220000694534",
-          "settings": {
-            "hold": false
-          },
-          "out": "repo",
-          "in": "repo"
-        },
-        {
-          "id": "529e6ed45f60ce0000807afe",
-          "source": "526dd5c6b4c4aa8770000001",
-          "target": "526dd5c6b4c4aa8770000003",
-          "settings": {},
-          "out": "github",
-          "in": "github"
-        },
-        {
-          "id": "529f2c9c6a4bce00002d28d7",
-          "source": "526dd5c6b4c4aa8770000003",
-          "target": "529f2c3d6a4bce00002d28d2",
-          "settings": {},
-          "out": "repo",
-          "in": "repo"
-        },
-        {
-          "id": "529f2cd96a4bce00002d28dc",
-          "source": "526dd5c6b4c4aa8770000003",
-          "target": "529f2ccd6a4bce00002d28db",
-          "settings": {},
-          "out": "repo",
-          "in": "repo"
-        },
-        {
-          "id": "52a292796ab1e400004a5930",
-          "source": "526dd5c6b4c4aa8770000003",
-          "target": "52a292616ab1e400004a592f",
-          "settings": {},
-          "out": "repo",
-          "in": "repo"
-        },
-        {
-          "id": "52a9d963cf434600004155c2",
-          "source": "526dd5c6b4c4aa8770000003",
-          "target": "52a9d94bcf434600004155c1",
-          "settings": {},
-          "out": "repo",
-          "in": "repo"
-        }
-      ],
-      "nodes": [
-        {
-          "id": "526dd5c6b4c4aa8770000001",
-          "ns": "github",
-          "name": "api",
-          "context": {
-            "oauth_token": "eeab97f80957938d21a683dd98d75e1e2b8b12c0"
-          },
-          "expose": {
-            "input": [
-              "oauth_token"
-            ]
-          },
-          "ports": {
-            "input": {
-              "oauth_token": {
-                "expose": true
-              }
-            }
-          }
-        },
-        {
-          "id": "526dd5c6b4c4aa8770000003",
-          "ns": "github",
-          "name": "getRepo",
-          "context": {
-            "username": "psichi",
-            "reponame": "chix-ui"
-          },
-          "expose": {
-            "input": [
-              "username",
-              "reponame"
-            ]
-          },
-          "ports": {
-            "input": {
-              "username": {
-                "expose": true
-              },
-              "reponame": {
-                "expose": true
-              }
-            }
-          }
-        },
-        {
-          "id": "527c0c62ee56220000694534",
-          "ns": "github",
-          "name": "getTree",
-          "context": {
-            "branch": "master"
-          },
-          "expose": {
-            "input": [
-              "branch"
-            ]
-          },
-          "ports": {
-            "input": {
-              "branch": {
-                "expose": true
-              }
-            },
-            "output": {
-              "err": {
-                "expose": true
-              },
-              "tree": {
-                "expose": true
-              }
-            }
-          }
-        },
-        {
-          "id": "529f2c3d6a4bce00002d28d2",
-          "ns": "github",
-          "name": "write",
-          "context": {},
-          "ports": {
-            "input": {
-              "branch": {
-                "expose": true
-              },
-              "path": {
-                "expose": true
-              },
-              "contents": {
-                "expose": true
-              },
-              "commit_message": {
-                "expose": true
-              }
-            },
-            "output": {
-              "write": {
-                "expose": true
-              }
-            }
-          }
-        },
-        {
-          "id": "529f2ccd6a4bce00002d28db",
-          "ns": "github",
-          "name": "read",
-          "context": {},
-          "ports": {
-            "input": {
-              "branch": {
-                "expose": true
-              },
-              "path": {
-                "expose": true
-              }
-            },
-            "output": {
-              "sha": {
-                "expose": true
-              },
-              "content": {
-                "expose": true
-              },
-              "err": {
-                "expose": true
-              }
-            }
-          }
-        },
-        {
-          "id": "52a292616ab1e400004a592f",
-          "ns": "github",
-          "name": "show",
-          "context": {},
-          "ports": {
-            "output": {
-              "repo": {
-                "expose": true
-              },
-              "err": {
-                "expose": true
-              }
-            }
-          }
-        },
-        {
-          "id": "52a9d94bcf434600004155c1",
-          "ns": "github",
-          "name": "getSha",
-          "context": {},
-          "ports": {
-            "input": {
-              "path": {
-                "expose": true
-              }
-            },
-            "output": {
-              "err": {
-                "expose": true
-              },
-              "sha": {
-                "expose": true
-              }
-            }
-          }
-        }
-      ],
-      "ns": "github"
-    }
-  ]
+  "twigs": []
 }
