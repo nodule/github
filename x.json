@@ -210,7 +210,8 @@
           },
           "path": {
             "title": "Path",
-            "type": "string"
+            "type": "string",
+            "async": true
           }
         },
         "output": {
@@ -232,9 +233,10 @@
         "active": "Reading {{input.path}} from the {{input.branch}} branch"
       },
       "description": "Read File",
+      "async": true,
       "ns": "github",
       "name": "read",
-      "fn": "output = [\n  input.repo,\n  'read',\n  input.branch,\n  input.path\n]\n"
+      "fn": "on.input.path = function() {\n  input.repo.read(\n    input.branch,\n    input.path,\n    function(err, content, sha) {\n      output({\n        error: err,\n        content: content,\n        sha: sha\n      });\n    }\n  );\n};\n"
     },
     {
       "ports": {

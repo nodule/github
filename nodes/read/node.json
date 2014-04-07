@@ -1,6 +1,7 @@
 {
   "name": "read",
   "ns": "github",
+  "async": true,
   "description": "Read File",
   "phrases": {
     "active": "Reading {{input.path}} from the {{input.branch}} branch"
@@ -18,7 +19,8 @@
       },
       "path": {
         "title": "Path",
-        "type": "string"
+        "type": "string",
+        "async": true
       }
     },
     "output": {
