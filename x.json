@@ -236,7 +236,7 @@
       "async": true,
       "ns": "github",
       "name": "read",
-      "fn": "on.input.path = function() {\n  input.repo.read(\n    input.branch,\n    input.path,\n    function(err, content, sha) {\n      output({\n        error: err,\n        content: content,\n        sha: sha\n      });\n    }\n  );\n};\n"
+      "fn": "on.input.path = function() {\n  input.repo.read(\n    input.branch,\n    input.path,\n    function(err, content, sha) {\n      if(err) {\n        output({ error: err });\n      } else {\n        output({\n          content: content,\n          sha: sha\n        });\n      }\n    }\n  );\n};\n"
     },
     {
       "ports": {

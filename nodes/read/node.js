@@ -3,11 +3,14 @@ on.input.path = function() {
     input.branch,
     input.path,
     function(err, content, sha) {
-      output({
-        error: err,
-        content: content,
-        sha: sha
-      });
+      if(err) {
+        output({ error: err });
+      } else {
+        output({
+          content: content,
+          sha: sha
+        });
+      }
     }
   );
 };
