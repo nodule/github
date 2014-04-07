@@ -46,6 +46,10 @@
           "path": {
             "title": "Path",
             "type": "string"
+          },
+          "ref": {
+            "title": "Ref",
+            "type": "string"
           }
         },
         "output": {
@@ -65,7 +69,7 @@
       "description": "Get contents at a particular path",
       "ns": "github",
       "name": "contents",
-      "fn": "output = [input.repo, 'contents', input.path]\n"
+      "fn": "output = [input.repo, 'contents', .input.ref, input.path]\n"
     },
     {
       "ports": {

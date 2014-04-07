@@ -1,1 +1,1 @@
-output = [input.repo, 'contents', input.path]
+output = [input.repo, 'contents', .input.ref, input.path]
