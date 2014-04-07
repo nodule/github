@@ -9,8 +9,7 @@
     "input": {
       "github": {
         "title": "Github",
-        "type": "object",
-        "readonly": true
+        "type": "function"
       },
       "username": {
         "title": "Username",
@@ -24,7 +23,7 @@
     "output": {
       "repo": {
         "title": "Repository",
-        "type": "object"
+        "type": "function"
       }
     }
   }

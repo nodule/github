@@ -9,8 +9,7 @@
     "input": {
       "repo": {
         "title": "Repository",
-        "type": "object",
-        "readonly": true
+        "type": "function"
       }
     },
     "output": {
@@ -20,7 +19,7 @@
       },
       "repo": {
         "title": "Repository",
-        "type": "object"
+        "type": "function"
       }
     }
   }

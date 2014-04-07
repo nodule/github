@@ -9,8 +9,7 @@
     "input": {
       "repo": {
         "title": "Repository",
-        "type": "object",
-        "readonly": true
+        "type": "function"
       },
       "branch": {
         "title": "Branch",

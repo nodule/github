@@ -1,16 +1,15 @@
 {
-  "name": "getSha",
+  "name": "contents",
   "ns": "github",
-  "description": "Retrieve Sha for file",
+  "description": "Get contents at a particular path",
   "phrases": {
-    "active": "retrieving Sha for path {{input.path}}"
+    "active": "Reading contents of{{input.path}}"
   },
   "ports": {
     "input": {
       "repo": {
         "title": "Repository",
-        "type": "function",
-        "readonly": true
+        "type": "function"
       },
       "path": {
         "title": "Path",
@@ -22,8 +21,8 @@
         "title": "Error",
         "type": "object"
       },
-      "sha": {
-        "title": "Sha",
+      "contents": {
+        "title": "Contents",
         "type": "string"
       }
     }
