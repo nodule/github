@@ -1,0 +1,22 @@
+{
+  "name": "deleteRepo",
+  "ns": "github",
+  "description": "Delete Repository",
+  "phrases": {
+    "active": "Removing repository"
+  },
+  "ports": {
+    "input": {
+      "repo": {
+        "title": "Repository",
+        "type": "function"
+      }
+    },
+    "output": {
+      "error": {
+        "title": "Error",
+        "type": "object"
+      }
+    }
+  }
+}
