@@ -20,17 +20,24 @@
          "type": "string",
          "description": "A short description of the repository"
       },
-      "license_template": {
-        "title": "License",
-        "type": "string",
-        "enum": ["apache", "affero", "artistic", "gpl", "lgpl", "mit", "mozilla"],
-        "default": "mit",
-        "description":  "Desired LICENSE template to apply."
-      },
       "homepage": {
          "title": "Homepage",
          "type": "string",
-         "description": "URL with more information about the repository"
+         "description": "URL with more information about the repository",
+         "default": null
+      },
+      "auto_init": {
+        "title": "Auto Init",
+        "type": "boolean",
+        "description": "Pass true to create an initial commit with empty README.",
+        "default": false
+      },
+      "license_template": {
+        "title": "License",
+        "description":  "Desired LICENSE template to apply.",
+        "type": "string",
+        "enum": ["apache", "affero", "artistic", "gpl", "lgpl", "mit", "mozilla"],
+        "default": "mit"
       },
       "private": {
         "title": "Private",
@@ -61,12 +68,6 @@
         "type": "number",
         "description":  "The id of the team that will be granted access to this repository. This is only valid when creating a repository in an organization.",
         "default": null
-      },
-      "auto_init": {
-        "title": "Auto Init",
-        "type": "boolean",
-        "description": "Pass true to create an initial commit with empty README.",
-        "default": false
       },
       "gitignore_template": {
         "title": "Auto Init",
