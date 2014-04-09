@@ -76,16 +76,17 @@
         "input": {
           "github": {
             "title": "Github",
+            "async": true,
             "type": "function"
+          },
+          "name": {
+            "title": "The name of the repository",
+            "type": "string"
           },
           "options": {
             "type": "object",
             "title": "Options",
             "properties": {
-              "name": {
-                "title": "The name of the repository",
-                "type": "string"
-              },
               "description": {
                 "title": "Description",
                 "type": "string",
@@ -172,9 +173,10 @@
         "active": "Creating repository {{input.name}}"
       },
       "description": "Create Repository",
+      "async": true,
       "ns": "github",
       "name": "createRepo",
-      "fn": "on.input.github = function() {\n\n  var repo = new input.github.getRepo();\n  repo.createRepo(input.options, function(err, result) {\n    if(err) {\n      output({ error: err });\n    } else {\n      output({ out: result });\n    }\n  });\n};\n"
+      "fn": "on.input.github = function() {\n\n  var repo = new input.github.Repository(input.user, input.name);\n  input.options.name = input.name;\n  repo.createRepo(input.options, function(err, result) {\n    if(err) {\n      output({ error: err });\n    } else {\n      output({ out: result });\n    }\n  });\n};\n"
     },
     {
       "ports": {

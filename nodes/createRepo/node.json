@@ -1,6 +1,7 @@
 {
   "name": "createRepo",
   "ns": "github",
+  "async": true,
   "description": "Create Repository",
   "phrases": {
     "active": "Creating repository {{input.name}}"
@@ -9,16 +10,17 @@
     "input": {
       "github": {
         "title": "Github",
+        "async": true,
         "type": "function"
+      },
+      "name": {
+        "title": "The name of the repository",
+        "type": "string"
       },
       "options": {
         "type": "object",
         "title": "Options",
         "properties": {
-           "name": {
-             "title": "The name of the repository",
-             "type": "string"
-           },
            "description": {
               "title": "Description",
               "type": "string",
