@@ -177,7 +177,7 @@
       "async": true,
       "ns": "github",
       "name": "createRepo",
-      "fn": "on.input.github = function() {\n\n  var repo = new input.github.Repository(input.user, input.name);\n  input.options.name = input.name;\n  repo.createRepo(input.options, function(err, result) {\n    if(err) {\n      output({ error: err });\n    } else {\n      output({ out: result });\n    }\n  });\n};\n"
+      "fn": "on.input.github = function() {\n\n  var repo = data.getRepo(input.user, input.name);\n  input.options.name = input.name;\n  repo.createRepo(input.options, function(err, result) {\n    if(err) {\n      output({ error: err });\n    } else {\n      output({ out: result });\n    }\n  });\n};\n"
     },
     {
       "ports": {
