@@ -1,5 +1,7 @@
 on.input.github = function() {
-  input.github.createRepo(input, function(err, result) {
+
+  var repo = new input.github.getRepo();
+  repo.createRepo(input.options, function(err, result) {
     if(err) {
       output({ error: err });
     } else {
