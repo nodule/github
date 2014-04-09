@@ -20,18 +20,18 @@
       "options": {
         "type": "object",
         "title": "Options",
-        "required": false,
         "properties": {
            "description": {
               "title": "Description",
               "type": "string",
-              "description": "A short description of the repository"
+              "description": "A short description of the repository",
+              "required": false
            },
            "homepage": {
               "title": "Homepage",
               "type": "string",
               "description": "URL with more information about the repository",
-              "default": null
+              "required": false
            },
            "auto_init": {
              "title": "Auto Init",
@@ -74,13 +74,13 @@
              "title": "Team",
              "type": "number",
              "description":  "The id of the team that will be granted access to this repository. This is only valid when creating a repository in an organization.",
-             "default": null
+             "required": false
            },
            "gitignore_template": {
              "title": "Auto Init",
              "type":  "string",
              "description": "Desired language or platform .gitignore template to apply. Use the name of the template without the extension. For example, “Haskell”. Ignored if the auto_init parameter is not provided.",
-             "default": null
+             "required": false
            }
         }
       }
