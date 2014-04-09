@@ -167,7 +167,7 @@
       },
       "description": "Create Repository",
       "ns": "github",
-      "name": "createRep",
+      "name": "createRepo",
       "fn": "on.input.github = function() {\n  input.github.createRepo(input, function(err, result) {\n    if(err) {\n      output({ error: err });\n    } else {\n      output({ out: result });\n    }\n  });\n};\n"
     },
     {

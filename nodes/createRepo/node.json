@@ -1,5 +1,5 @@
 {
-  "name": "createRep",
+  "name": "createRepo",
   "ns": "github",
   "description": "Create Repository",
   "phrases": {
