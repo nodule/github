@@ -20,6 +20,7 @@
       "options": {
         "type": "object",
         "title": "Options",
+        "required": false,
         "properties": {
            "description": {
               "title": "Description",
