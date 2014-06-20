@@ -43,12 +43,12 @@
             "title": "Repository",
             "type": "function"
           },
-          "path": {
-            "title": "Path",
+          "branch": {
+            "title": "Branch",
             "type": "string"
           },
-          "ref": {
-            "title": "Ref",
+          "path": {
+            "title": "Path",
             "type": "string"
           }
         },
@@ -69,7 +69,7 @@
       "description": "Get contents at a particular path",
       "ns": "github",
       "name": "contents",
-      "fn": "output = [input.repo, 'contents', input.ref, input.path]\n"
+      "fn": "output = [input.repo, 'contents', input.branch, input.path]\n"
     },
     {
       "ports": {

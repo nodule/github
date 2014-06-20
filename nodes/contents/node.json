@@ -11,12 +11,12 @@
         "title": "Repository",
         "type": "function"
       },
-      "path": {
-        "title": "Path",
+      "branch": {
+        "title": "Branch",
         "type": "string"
       },
-      "ref": {
-        "title": "Ref",
+      "path": {
+        "title": "Path",
         "type": "string"
       }
     },
