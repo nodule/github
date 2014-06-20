@@ -210,6 +210,10 @@
             "type": "function",
             "readonly": true
           },
+          "branch": {
+            "title": "Branch",
+            "type": "string"
+          },
           "path": {
             "title": "Path",
             "type": "string"
@@ -232,7 +236,7 @@
       "description": "Retrieve Sha for file",
       "ns": "github",
       "name": "getSha",
-      "fn": "output = [\n  input.repo,\n  'getSha',\n  input.path\n]\n"
+      "fn": "output = [\n  input.repo,\n  'getSha',\n  input.branch,\n  input.path\n]\n"
     },
     {
       "ports": {

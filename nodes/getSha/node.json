@@ -12,6 +12,10 @@
         "type": "function",
         "readonly": true
       },
+      "branch": {
+        "title": "Branch",
+        "type": "string"
+      },
       "path": {
         "title": "Path",
         "type": "string"
