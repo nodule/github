@@ -2,7 +2,7 @@
   "name": "read",
   "ns": "github",
   "async": true,
-  "description": "Read File",
+  "description": "Read path",
   "phrases": {
     "active": "Reading {{input.path}} from the {{input.branch}} branch"
   },

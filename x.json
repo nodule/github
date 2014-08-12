@@ -336,7 +336,7 @@
       "phrases": {
         "active": "Reading {{input.path}} from the {{input.branch}} branch"
       },
-      "description": "Read File",
+      "description": "Read path",
       "async": true,
       "ns": "github",
       "name": "read",
