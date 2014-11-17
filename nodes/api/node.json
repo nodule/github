@@ -5,9 +5,6 @@
   "phrases": {
     "active": "Authenticating with github api"
   },
-  "require": {
-    "github-api": "0.x.x"
-  },
   "ports": {
     "input": {
       "oauth_token": {
@@ -20,6 +17,11 @@
         "title": "Github",
         "type": "object"
       }
+    }
+  },
+  "dependencies": {
+    "npm": {
+      "github-api": "0.x.x"
     }
   }
 }

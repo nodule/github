@@ -11,6 +11,11 @@
   },
   "nodes": [
     {
+      "dependencies": {
+        "npm": {
+          "github-api": "0.x.x"
+        }
+      },
       "ports": {
         "input": {
           "oauth_token": {
@@ -24,9 +29,6 @@
             "type": "object"
           }
         }
-      },
-      "require": {
-        "github-api": "0.x.x"
       },
       "phrases": {
         "active": "Authenticating with github api"
@@ -271,6 +273,11 @@
       "fn": "output = [\n  input.repo,\n  'getTree',\n  input.branch\n]\n"
     },
     {
+      "dependencies": {
+        "npm": {
+          "github-api": "0.x.x"
+        }
+      },
       "ports": {
         "input": {
           "username": {
@@ -288,9 +295,6 @@
             "type": "function"
           }
         }
-      },
-      "require": {
-        "github-api": "0.x.x"
       },
       "phrases": {
         "active": "Logging into Github"
