@@ -3,9 +3,9 @@ on.input.github = function() {
   $.options.name = $.name;
   repo.createRepo($.options, function(err, result) {
     if(err) {
-      output({ error: err });
+      output({ error: $.create(err) });
     } else {
-      output({ out: result });
+      output({ out: $.create(result) });
     }
   });
 };

@@ -4,11 +4,11 @@ on.input.path = function() {
     $.path,
     function(err, content, sha) {
       if(err) {
-        output({ error: err });
+        output({ error: $.create(err) });
       } else {
         output({
-          content: content,
-          sha: sha
+          content: $.create(content),
+          sha: $.create(sha)
         });
       }
     }

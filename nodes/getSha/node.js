@@ -1,6 +1,1 @@
-output = [
-  $.repo,
-  'getSha',
-  $.branch,
-  $.path
-]
+output = [$.repo, 'getSha', $.branch, $.path]

@@ -1,5 +1,1 @@
-output = [
-  $.repo,
-  'getTree',
-  $.branch
-]
+output = [$.repo, 'getTree', $.branch]
