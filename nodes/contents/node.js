@@ -1,1 +1,1 @@
-output = [input.repo, 'contents', input.branch, input.path]
+output = [$.repo, 'contents', $.branch, $.path]

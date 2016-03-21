@@ -1,6 +1,6 @@
 output = [
-  input.repo,
+  $.repo,
   'getSha',
-  input.branch,
-  input.path
+  $.branch,
+  $.path
 ]

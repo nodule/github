@@ -1,7 +1,7 @@
 on.input.path = function() {
-  input.repo.read(
-    input.branch,
-    input.path,
+  $.repo.read(
+    $.branch,
+    $.path,
     function(err, content, sha) {
       if(err) {
         output({ error: err });

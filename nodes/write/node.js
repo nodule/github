@@ -1,8 +1,8 @@
 output = [
-  input.repo,
+  $.repo,
   'write',
-  input.branch,
-  input.path,
-  input.contents,
-  input.commit_message
+  $.branch,
+  $.path,
+  $.contents,
+  $.commit_message
 ]

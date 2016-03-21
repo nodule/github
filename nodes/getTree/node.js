@@ -1,5 +1,5 @@
 output = [
-  input.repo,
+  $.repo,
   'getTree',
-  input.branch
+  $.branch
 ]

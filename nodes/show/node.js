@@ -1,1 +1,1 @@
-output = [input.repo, 'show']
+output = [$.repo, 'show']
