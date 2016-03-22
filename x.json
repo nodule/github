@@ -36,7 +36,7 @@
       "description": "Github API",
       "ns": "github",
       "name": "api",
-      "fn": "output = {\n  github: new github_api({\n    token: input.oauth_token\n  })\n}\n"
+      "fn": "output = {\n  github: $.create(new github_api({token: $.oauth_token}))\n}\n"
     },
     {
       "ports": {
@@ -71,7 +71,7 @@
       "description": "Get contents at a particular path",
       "ns": "github",
       "name": "contents",
-      "fn": "output = [input.repo, 'contents', input.branch, input.path]\n"
+      "fn": "output = [$.repo, 'contents', $.branch, $.path]\n"
     },
     {
       "ports": {
@@ -179,7 +179,7 @@
       "async": true,
       "ns": "github",
       "name": "createRepo",
-      "fn": "on.input.github = function() {\n\n  var repo = data.getRepo(input.user, input.name);\n  input.options.name = input.name;\n  repo.createRepo(input.options, function(err, result) {\n    if(err) {\n      output({ error: err });\n    } else {\n      output({ out: result });\n    }\n  });\n};\n"
+      "fn": "on.input.github = function() {\n  var repo = $.github.getRepo($.user, $.name);\n  $.options.name = $.name;\n  repo.createRepo($.options, function(err, result) {\n    if(err) {\n      output({ error: $.create(err) });\n    } else {\n      output({ out: $.create(result) });\n    }\n  });\n};\n"
     },
     {
       "ports": {
@@ -202,7 +202,7 @@
       "description": "Delete Repository",
       "ns": "github",
       "name": "deleteRepo",
-      "fn": "on.input.repo = function() {\n  input.repo.deleteRepo(function(err) {\n    if(err) {\n      output({ error: err});\n    }\n  });\n}\n"
+      "fn": "on.input.repo = function() {\n  $.repo.deleteRepo(function(err) {\n    if(err) {\n      output({ error: $.create(err)});\n    }\n  });\n}\n"
     },
     {
       "ports": {
@@ -238,7 +238,7 @@
       "description": "Retrieve Sha for file",
       "ns": "github",
       "name": "getSha",
-      "fn": "output = [\n  input.repo,\n  'getSha',\n  input.branch,\n  input.path\n]\n"
+      "fn": "output = [$.repo, 'getSha', $.branch, $.path]\n"
     },
     {
       "ports": {
@@ -270,7 +270,7 @@
       "description": "Retrieve repo tree",
       "ns": "github",
       "name": "getTree",
-      "fn": "output = [\n  input.repo,\n  'getTree',\n  input.branch\n]\n"
+      "fn": "output = [$.repo, 'getTree', $.branch]\n"
     },
     {
       "dependencies": {
@@ -302,7 +302,7 @@
       "description": "Github Login",
       "ns": "github",
       "name": "login",
-      "fn": "output = {\n  github: new github_api({\n    username: input.username,\n    password: input.password\n  })\n}\n"
+      "fn": "output = {\n  github: $.create(new github_api({username: $.username, password: $.password}))\n}\n"
     },
     {
       "ports": {
@@ -344,7 +344,7 @@
       "async": true,
       "ns": "github",
       "name": "read",
-      "fn": "on.input.path = function() {\n  input.repo.read(\n    input.branch,\n    input.path,\n    function(err, content, sha) {\n      if(err) {\n        output({ error: err });\n      } else {\n        output({\n          content: content,\n          sha: sha\n        });\n      }\n    }\n  );\n};\n"
+      "fn": "on.input.path = function() {\n  $.repo.read(\n    $.branch,\n    $.path,\n    function(err, content, sha) {\n      if(err) {\n        output({ error: $.create(err) });\n      } else {\n        output({\n          content: $.create(content),\n          sha: $.create(sha)\n        });\n      }\n    }\n  );\n};\n"
     },
     {
       "ports": {
@@ -371,7 +371,7 @@
       "description": "Show Repository",
       "ns": "github",
       "name": "show",
-      "fn": "output = [input.repo, 'show']\n"
+      "fn": "output = [$.repo, 'show']\n"
     },
     {
       "ports": {
@@ -411,7 +411,7 @@
       "description": "Write File",
       "ns": "github",
       "name": "write",
-      "fn": "output = [\n  input.repo,\n  'write',\n  input.branch,\n  input.path,\n  input.contents,\n  input.commit_message\n]\n"
+      "fn": "output = [$.repo, 'write', $.branch, $.path, $.contents, $.commit_message]\n"
     }
   ],
   "twigs": []
