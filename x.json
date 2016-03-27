@@ -207,6 +207,39 @@
     {
       "ports": {
         "input": {
+          "github": {
+            "title": "Github",
+            "type": "function",
+            "async": true
+          },
+          "username": {
+            "title": "Username",
+            "type": "string"
+          },
+          "reponame": {
+            "title": "Repository name",
+            "type": "string"
+          }
+        },
+        "output": {
+          "repo": {
+            "title": "Repository",
+            "type": "function"
+          }
+        }
+      },
+      "async": true,
+      "phrases": {
+        "active": "getting repository {{input.reponame}}"
+      },
+      "description": "Get Repository",
+      "ns": "github",
+      "name": "getRepo",
+      "fn": "on.input.github = function() {\n  output({\n    repo: $.create($.github.getRepo($.username, $.reponame))\n  })\n}\n"
+    },
+    {
+      "ports": {
+        "input": {
           "repo": {
             "title": "Repository",
             "type": "function",

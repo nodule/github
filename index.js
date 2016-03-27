@@ -3,6 +3,7 @@ module.exports = {
   contents: require('./contents'),
   createRepo: require('./createRepo'),
   deleteRepo: require('./deleteRepo'),
+  getRepo: require('./getRepo'),
   getSha: require('./getSha'),
   getTree: require('./getTree'),
   login: require('./login'),
