@@ -10,7 +10,7 @@ module.exports = {
       repo: {
         title: "Repository",
         type: "function",
-        fn: function __REPO__(data, x, source, state, input, output) {
+        fn: function __REPO__(data, x, source, state, input, $, output) {
           var r = function() {
             $.repo.deleteRepo(function(err) {
               if (err) {

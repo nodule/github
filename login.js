@@ -13,7 +13,8 @@ module.exports = {
       },
       password: {
         title: "Password",
-        type: "password"
+        type: "string",
+        format: "password"
       }
     },
     output: {
