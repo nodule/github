@@ -12,7 +12,7 @@ module.exports = {
         title: "Github",
         async: true,
         type: "function",
-        fn: function __GITHUB__(data, x, source, state, input, $, output) {
+        fn: function __GITHUB__(data, source, state, input, $, output) {
           var r = function() {
             var repo = $.github.getRepo($.user, $.name);
             $.options.name = $.name;

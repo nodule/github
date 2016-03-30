@@ -21,7 +21,7 @@ module.exports = {
         title: "Path",
         type: "string",
         async: true,
-        fn: function __PATH__(data, x, source, state, input, $, output) {
+        fn: function __PATH__(data, source, state, input, $, output) {
           var r = function() {
             $.repo.read(
               $.branch,
