@@ -7,14 +7,19 @@
     "url": "https://github.com/nodule/github.git"
   },
   "dependencies": {
-    "github-api": "0.x.x"
+    "es6-template-strings": "^2.0.1",
+    "github-api": "^0.11.2",
+    "mustache": "^2.3.0",
+    "qs": "^6.5.2",
+    "superagent": "^3.8.3"
   },
   "nodes": [
     {
-      "dependencies": {
-        "npm": {
-          "github-api": "0.x.x"
-        }
+      "name": "api",
+      "ns": "github",
+      "description": "Github API",
+      "phrases": {
+        "active": "Authenticating with github api"
       },
       "ports": {
         "input": {
@@ -30,15 +35,20 @@
           }
         }
       },
-      "phrases": {
-        "active": "Authenticating with github api"
+      "dependencies": {
+        "npm": {
+          "github-api": "0.x.x"
+        }
       },
-      "description": "Github API",
-      "ns": "github",
-      "name": "api",
       "fn": "output = {\n  github: $.create(new github_api({token: $.oauth_token}))\n}\n"
     },
     {
+      "name": "contents",
+      "ns": "github",
+      "description": "Get contents at a particular path",
+      "phrases": {
+        "active": "Reading contents of{{input.path}}"
+      },
       "ports": {
         "input": {
           "repo": {
@@ -65,15 +75,16 @@
           }
         }
       },
-      "phrases": {
-        "active": "Reading contents of{{input.path}}"
-      },
-      "description": "Get contents at a particular path",
-      "ns": "github",
-      "name": "contents",
       "fn": "output = [$.repo, 'contents', $.branch, $.path]\n"
     },
     {
+      "name": "createRepo",
+      "ns": "github",
+      "async": true,
+      "description": "Create Repository",
+      "phrases": {
+        "active": "Creating repository {{input.name}}"
+      },
       "ports": {
         "input": {
           "github": {
@@ -172,16 +183,15 @@
           }
         }
       },
-      "phrases": {
-        "active": "Creating repository {{input.name}}"
-      },
-      "description": "Create Repository",
-      "async": true,
-      "ns": "github",
-      "name": "createRepo",
       "fn": "on.input.github = function() {\n  var repo = $.github.getRepo($.user, $.name);\n  $.options.name = $.name;\n  repo.createRepo($.options, function(err, result) {\n    if(err) {\n      output({ error: $.create(err) });\n    } else {\n      output({ out: $.create(result) });\n    }\n  });\n};\n"
     },
     {
+      "name": "deleteRepo",
+      "ns": "github",
+      "description": "Delete Repository",
+      "phrases": {
+        "active": "Removing repository"
+      },
       "ports": {
         "input": {
           "repo": {
@@ -196,15 +206,16 @@
           }
         }
       },
-      "phrases": {
-        "active": "Removing repository"
-      },
-      "description": "Delete Repository",
-      "ns": "github",
-      "name": "deleteRepo",
       "fn": "on.input.repo = function() {\n  $.repo.deleteRepo(function(err) {\n    if(err) {\n      output({ error: $.create(err)});\n    }\n  });\n}\n"
     },
     {
+      "name": "getRepo",
+      "ns": "github",
+      "description": "Get Repository",
+      "phrases": {
+        "active": "getting repository {{input.reponame}}"
+      },
+      "async": true,
       "ports": {
         "input": {
           "github": {
@@ -228,16 +239,15 @@
           }
         }
       },
-      "async": true,
-      "phrases": {
-        "active": "getting repository {{input.reponame}}"
-      },
-      "description": "Get Repository",
-      "ns": "github",
-      "name": "getRepo",
       "fn": "on.input.github = function() {\n  output({\n    repo: $.create($.github.getRepo($.username, $.reponame))\n  })\n}\n"
     },
     {
+      "name": "getSha",
+      "ns": "github",
+      "description": "Retrieve Sha for file",
+      "phrases": {
+        "active": "retrieving Sha for path {{input.path}}"
+      },
       "ports": {
         "input": {
           "repo": {
@@ -265,15 +275,15 @@
           }
         }
       },
-      "phrases": {
-        "active": "retrieving Sha for path {{input.path}}"
-      },
-      "description": "Retrieve Sha for file",
-      "ns": "github",
-      "name": "getSha",
       "fn": "output = [$.repo, 'getSha', $.branch, $.path]\n"
     },
     {
+      "name": "getTree",
+      "ns": "github",
+      "description": "Retrieve repo tree",
+      "phrases": {
+        "active": "retrieving {{input.branch}} tree"
+      },
       "ports": {
         "input": {
           "repo": {
@@ -297,19 +307,14 @@
           }
         }
       },
-      "phrases": {
-        "active": "retrieving {{input.branch}} tree"
-      },
-      "description": "Retrieve repo tree",
-      "ns": "github",
-      "name": "getTree",
       "fn": "output = [$.repo, 'getTree', $.branch]\n"
     },
     {
-      "dependencies": {
-        "npm": {
-          "github-api": "0.x.x"
-        }
+      "name": "login",
+      "ns": "github",
+      "description": "Github Login",
+      "phrases": {
+        "active": "Logging into Github"
       },
       "ports": {
         "input": {
@@ -330,15 +335,21 @@
           }
         }
       },
-      "phrases": {
-        "active": "Logging into Github"
+      "dependencies": {
+        "npm": {
+          "github-api": "0.x.x"
+        }
       },
-      "description": "Github Login",
-      "ns": "github",
-      "name": "login",
       "fn": "output = {\n  github: $.create(new github_api({username: $.username, password: $.password}))\n}\n"
     },
     {
+      "name": "read",
+      "ns": "github",
+      "async": true,
+      "description": "Read path",
+      "phrases": {
+        "active": "Reading {{input.path}} from the {{input.branch}} branch"
+      },
       "ports": {
         "input": {
           "repo": {
@@ -371,16 +382,15 @@
           }
         }
       },
-      "phrases": {
-        "active": "Reading {{input.path}} from the {{input.branch}} branch"
-      },
-      "description": "Read path",
-      "async": true,
-      "ns": "github",
-      "name": "read",
       "fn": "on.input.path = function() {\n  $.repo.read(\n    $.branch,\n    $.path,\n    function(err, content, sha) {\n      if(err) {\n        output({ error: $.create(err) });\n      } else {\n        output({\n          content: $.create(content),\n          sha: $.create(sha)\n        });\n      }\n    }\n  );\n};\n"
     },
     {
+      "name": "show",
+      "ns": "github",
+      "description": "Show Repository",
+      "phrases": {
+        "active": "Reading {{input.path}} from the {{input.branch}} branch"
+      },
       "ports": {
         "input": {
           "repo": {
@@ -399,15 +409,15 @@
           }
         }
       },
-      "phrases": {
-        "active": "Reading {{input.path}} from the {{input.branch}} branch"
-      },
-      "description": "Show Repository",
-      "ns": "github",
-      "name": "show",
       "fn": "output = [$.repo, 'show']\n"
     },
     {
+      "name": "write",
+      "ns": "github",
+      "description": "Write File",
+      "phrases": {
+        "active": "Writing {{input.path}} to the {{input.branch}} branch. [{{input.commit_message}}]"
+      },
       "ports": {
         "input": {
           "repo": {
@@ -439,14 +449,114 @@
           }
         }
       },
-      "phrases": {
-        "active": "Writing {{input.path}} to the {{input.branch}} branch. [{{input.commit_message}}]"
-      },
-      "description": "Write File",
-      "ns": "github",
-      "name": "write",
       "fn": "output = [$.repo, 'write', $.branch, $.path, $.contents, $.commit_message]\n"
+    },
+    {
+      "type": "flow",
+      "nodes": [
+        {
+          "id": "GetJsonRequest",
+          "title": "GetJsonRequest",
+          "ns": "superagent",
+          "name": "getJsonRequest"
+        },
+        {
+          "id": "Qs",
+          "title": "Qs",
+          "ns": "qs",
+          "name": "stringify"
+        },
+        {
+          "id": "Log",
+          "title": "Log",
+          "ns": "console",
+          "name": "log"
+        },
+        {
+          "id": "UrlTpl",
+          "title": "UrlTpl",
+          "ns": "template",
+          "name": "string"
+        },
+        {
+          "id": "Mustache",
+          "title": "Mustache",
+          "ns": "template",
+          "name": "mustache"
+        }
+      ],
+      "links": [
+        {
+          "source": {
+            "id": "Qs",
+            "port": "out"
+          },
+          "target": {
+            "id": "UrlTpl",
+            "port": "in",
+            "setting": {
+              "index": "query"
+            }
+          },
+          "metadata": {
+            "title": "Qs out -> in UrlTpl"
+          }
+        },
+        {
+          "source": {
+            "id": "UrlTpl",
+            "port": "out"
+          },
+          "target": {
+            "id": "GetJsonRequest",
+            "port": "url"
+          },
+          "metadata": {
+            "title": "UrlTpl out -> url GetJsonRequest"
+          }
+        },
+        {
+          "source": {
+            "id": "GetJsonRequest",
+            "port": "out"
+          },
+          "target": {
+            "id": "Mustache",
+            "port": "vars",
+            "setting": {
+              "index": "jobs"
+            }
+          },
+          "metadata": {
+            "title": "GetJsonRequest out -> vars Mustache"
+          }
+        }
+      ],
+      "title": "Search Github Jobs",
+      "description": "Search the Github jobs api.",
+      "providers": {
+        "@": {
+          "url": "https://api.chix.io/v1/nodes/rhalff/{ns}/{name}"
+        }
+      },
+      "ports": {
+        "input": {
+          "in": {
+            "nodeId": "Qs",
+            "title": "In",
+            "name": "in"
+          }
+        },
+        "output": {
+          "out": {
+            "nodeId": "Mustache",
+            "title": "Out",
+            "name": "out"
+          }
+        }
+      },
+      "ns": "github",
+      "name": "jobs"
     }
-  ],
-  "twigs": []
+  ]
 }

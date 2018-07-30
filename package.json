@@ -16,7 +16,11 @@
     "test": "chit -r"
   },
   "dependencies": {
-    "github-api": "0.x.x"
+    "es6-template-strings": "^2.0.1",
+    "github-api": "^0.11.2",
+    "mustache": "^2.3.0",
+    "qs": "^6.5.2",
+    "superagent": "^3.8.3"
   },
   "devDependencies": {
     "chit": "0.x.x"

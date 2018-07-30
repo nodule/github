@@ -1,0 +1,41 @@
+title: Search Github Jobs
+description: Search the Github jobs api.
+
+provider https://api.chix.io/v1/nodes/rhalff/{ns}/{name}
+
+GetJsonRequest(superagent/getJsonRequest)
+Qs(qs/stringify)
+Log(console/log)
+UrlTpl(template/string)
+Mustache(template/mustache)
+
+/*
+{
+  "description": "javascript",
+  "location": "remote",
+  "markdown": true
+}
+*/
+
+-> @in Qs
+
+{} -> options Qs
+
+Qs out -> [query] in UrlTpl
+
+'http://jobs.github.com/positions.json?${query}' -> template UrlTpl
+
+UrlTpl out -> url GetJsonRequest
+
+'
+ {{#jobs}}
+   * {{{title}}}
+     {{type}} {{location}}
+     {{company}} {{{company_url}}}
+
+ {{/jobs}}
+' -> body Mustache
+GetJsonRequest out -> [jobs] vars Mustache
+
+<- out Mustache
+

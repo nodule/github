@@ -1,0 +1,362 @@
+{
+  "dependencies": {
+    "npm": {
+      "qs": "latest",
+      "superagent": "^0.18.0",
+      "es6-template-strings": "latest",
+      "mustache": "latest"
+    }
+  },
+  "nodeDefinitions": {
+    "https://api.chix.io/v1/nodes/rhalff/{ns}/{name}": {
+      "superagent": {
+        "getJsonRequest": {
+          "id": "16d089df-f704-4437-85cf-dc88abedae97",
+          "description": "Retrieve json data from remote url",
+          "links": [
+            {
+              "source": {
+                "id": "API",
+                "port": "request"
+              },
+              "target": {
+                "id": "End",
+                "port": "request"
+              },
+              "metadata": {
+                "title": "API request -> request End"
+              }
+            }
+          ],
+          "name": "getJsonRequest",
+          "nodes": [
+            {
+              "id": "API",
+              "title": "API",
+              "ns": "superagent",
+              "name": "api",
+              "context": {
+                "method": "GET"
+              },
+              "provider": "https://api.chix.io/v1/nodes/rhalff/{ns}/{name}"
+            },
+            {
+              "id": "End",
+              "title": "End",
+              "ns": "superagent",
+              "name": "end",
+              "provider": "https://api.chix.io/v1/nodes/rhalff/{ns}/{name}"
+            }
+          ],
+          "ns": "superagent",
+          "ports": {
+            "input": {
+              "url": {
+                "title": "Url",
+                "type": "string",
+                "format": "url",
+                "name": "url",
+                "nodeId": "API"
+              }
+            },
+            "output": {
+              "headers": {
+                "type": "string",
+                "title": "Headers",
+                "name": "headers",
+                "nodeId": "End"
+              },
+              "res": {
+                "type": "Response",
+                "title": "Res",
+                "name": "res",
+                "nodeId": "End"
+              },
+              "out": {
+                "type": "string",
+                "title": "Out",
+                "name": "body",
+                "nodeId": "End"
+              }
+            }
+          },
+          "providers": {
+            "@": {
+              "url": "https://api.chix.io/v1/nodes/rhalff/{ns}/{name}"
+            }
+          },
+          "title": "GetJsonRequest",
+          "type": "flow",
+          "provider": "https://api.chix.io/v1/nodes/rhalff/{ns}/{name}"
+        },
+        "api": {
+          "id": "38bcb9b8-fe13-4c55-aa7e-199dc3f8ea13",
+          "dependencies": {
+            "npm": {
+              "superagent": "^0.18.0"
+            }
+          },
+          "description": "Super Agent is light-weight progressive ajax API",
+          "fn": "output.request = $.create(superagent($.method, $.url));\nif($.withCredentials) {\n  output.request.withCredentials();\n}\n",
+          "name": "api",
+          "ns": "superagent",
+          "phrases": {
+            "active": "Creating superagent {{input.method}}: {{input.url}}"
+          },
+          "ports": {
+            "input": {
+              "method": {
+                "title": "Method",
+                "type": "string",
+                "enum": [
+                  "GET",
+                  "POST",
+                  "PUT",
+                  "HEAD",
+                  "DELETE"
+                ],
+                "default": "GET"
+              },
+              "url": {
+                "title": "URL",
+                "type": "string",
+                "format": "url"
+              },
+              "withCredentials": {
+                "title": "With Credentials",
+                "description": "enables the ability to send cookies from the origin, however only when \"Access-Control-Allow-Origin\" is not a wildcard (\"*\"), and \"Access-Control-Allow-Credentials\" is \"true\"",
+                "type": "boolean",
+                "default": false
+              }
+            },
+            "output": {
+              "request": {
+                "type": "Request",
+                "title": "Request"
+              }
+            }
+          },
+          "provider": "https://api.chix.io/v1/nodes/rhalff/{ns}/{name}",
+          "title": "API"
+        },
+        "end": {
+          "id": "a8c3e6ad-962d-4b88-a656-791d718c17bb",
+          "description": "End request",
+          "fn": "output = function() {\n  $.request.end(function(err, res) {\n    if(err) {\n      cb({ error: $.create(err) });\n    } else {\n      cb({\n        res: $.create(res),\n        body: $.create(res.body),\n        headers: $.create(res.headers),\n        status: $.create(res.status)\n      });\n    }\n\n    // server side and nextTick, could be done is too vroeg\n    // server side superagent fails sometimes.\n    // the weird thing is, first time it succeeds second time it fails.\n    done();\n  });\n};\n",
+          "name": "end",
+          "ns": "superagent",
+          "phrases": {
+            "active": "Starting request"
+          },
+          "ports": {
+            "input": {
+              "request": {
+                "title": "Request",
+                "type": "Request"
+              }
+            },
+            "output": {
+              "error": {
+                "type": "Error",
+                "title": "Error"
+              },
+              "res": {
+                "type": "Response",
+                "title": "Response"
+              },
+              "body": {
+                "type": "string",
+                "title": "Body"
+              },
+              "headers": {
+                "type": "string",
+                "title": "Headers"
+              },
+              "status": {
+                "type": "string",
+                "title": "Status"
+              }
+            }
+          },
+          "provider": "https://api.chix.io/v1/nodes/rhalff/{ns}/{name}",
+          "title": "End"
+        }
+      },
+      "qs": {
+        "stringify": {
+          "id": "5aafab2c-331f-4a76-9d78-386cee48a0f3",
+          "async": true,
+          "dependencies": {
+            "npm": {
+              "qs": "latest"
+            }
+          },
+          "description": "Stringify query parameters",
+          "fn": "on.input.in = function() {\n  try {\n    output({out: $.write('in', qs.stringify($.in, $.options))});\n  } catch (e) {\n     output({error: $.create(e)});\n  }\n};\n",
+          "name": "stringify",
+          "ns": "qs",
+          "phrases": {
+            "active": "Stringifying parameters"
+          },
+          "ports": {
+            "input": {
+              "in": {
+                "title": "Parameters",
+                "type": "object",
+                "async": true,
+                "default": {
+                  "description": "javascript",
+                  "location": "remote"
+                }
+              },
+              "options": {
+                "title": "Options",
+                "type": "object",
+                "properties": {
+                  "indices": {
+                    "title": "Indices",
+                    "description": "When arrays are stringified, by default they are given explicit indices",
+                    "type": "boolean",
+                    "default": true
+                  }
+                },
+                "delimiter": {
+                  "title": "Delimiter",
+                  "description": "Optional delimiter",
+                  "type": "any",
+                  "required": false
+                }
+              }
+            },
+            "output": {
+              "out": {
+                "title": "Querystring",
+                "type": "string"
+              },
+              "error": {
+                "title": "Error",
+                "type": "Error"
+              }
+            }
+          },
+          "provider": "https://api.chix.io/v1/nodes/rhalff/{ns}/{name}",
+          "title": "Qs"
+        }
+      },
+      "console": {
+        "log": {
+          "id": "590fc4ed-596f-408d-a6fb-df5de3e12947",
+          "async": true,
+          "description": "Console log",
+          "fn": "on.input.msg = function() {\n  console.log($.msg);\n  output( { out: $.get('msg') });\n}\n",
+          "name": "log",
+          "ns": "console",
+          "phrases": {
+            "active": "Logging to console"
+          },
+          "ports": {
+            "input": {
+              "msg": {
+                "type": "any",
+                "title": "Log message",
+                "description": "Logs a message to the console",
+                "async": true,
+                "required": true
+              }
+            },
+            "output": {
+              "out": {
+                "type": "any",
+                "title": "Log message"
+              }
+            }
+          },
+          "provider": "https://api.chix.io/v1/nodes/rhalff/{ns}/{name}",
+          "title": "Log"
+        }
+      },
+      "template": {
+        "string": {
+          "id": "3f6deccc-9b29-4ff4-8ae4-febeece8fc02",
+          "dependencies": {
+            "npm": {
+              "es6-template-strings": "latest"
+            }
+          },
+          "description": "Compile and resolve template strings notation as specified in ES6",
+          "fn": "output.out = $.write('in', es6_template_strings($.template, $.in))\n",
+          "name": "string",
+          "ns": "template",
+          "phrases": {
+            "active": "Applying template string"
+          },
+          "ports": {
+            "input": {
+              "in": {
+                "type": "object",
+                "title": "Input",
+                "description": "Input values",
+                "required": true
+              },
+              "template": {
+                "type": "string",
+                "title": "String",
+                "description": "Template string",
+                "required": true
+              }
+            },
+            "output": {
+              "out": {
+                "title": "String",
+                "type": "object"
+              }
+            }
+          },
+          "provider": "https://api.chix.io/v1/nodes/rhalff/{ns}/{name}",
+          "title": "UrlTpl"
+        },
+        "mustache": {
+          "id": "5e4de499-534d-466f-b36a-977ca09bd8ca",
+          "dependencies": {
+            "npm": {
+              "mustache": "latest"
+            }
+          },
+          "description": "Mustache Template engine",
+          "fn": "output = {out: $.create(mustache.render($.body, $.vars))}\n",
+          "name": "mustache",
+          "ns": "template",
+          "phrases": {
+            "active": "Compiling mustache template"
+          },
+          "ports": {
+            "input": {
+              "body": {
+                "type": "string",
+                "format": "html",
+                "title": "Template body",
+                "description": "The body of the mustache template",
+                "required": true
+              },
+              "vars": {
+                "type": "object",
+                "title": "Input variables",
+                "description": "the input variables for this template",
+                "required": true,
+                "readonly": true
+              }
+            },
+            "output": {
+              "out": {
+                "title": "String",
+                "type": "string"
+              }
+            }
+          },
+          "provider": "https://api.chix.io/v1/nodes/rhalff/{ns}/{name}",
+          "title": "Mustache"
+        }
+      }
+    }
+  }
+}

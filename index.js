@@ -9,5 +9,6 @@ module.exports = {
   login: require('./login'),
   read: require('./read'),
   show: require('./show'),
-  write: require('./write')
+  write: require('./write'),
+  jobs: require('./jobs')
 }
